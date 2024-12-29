@@ -32,4 +32,9 @@ class UserController extends Controller
         }
         return redirect()->back()->with('success', 'Adminrechten zijn verwijderd');
     }
+    public function index()
+    {
+        $users = User::with('profile')->get();
+        return view('users.index', compact('users'));
+    }
 }

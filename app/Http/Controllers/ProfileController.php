@@ -8,33 +8,53 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Profile;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request): View
+    public function show($username)
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $profile = Profile::where('username', $username)->firstOrFail();
+        return view('profile.show', compact('profile'));
+    }
+
+    public function edit()
+    {
+        $profile = Auth::user()->profile ?? new Profile();
+        return view('profile.edit', compact('profile'));
     }
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request)
     {
-        $request->user()->fill($request->validated());
+        $request->validate([
+            'username' => 'required|string|max:255',
+            'birthday' => 'nullable|date',
+            'profile_picture' => 'nullable|image|max:2048',
+            'about_me' => 'nullable|string'
+        ]);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user = Auth::user();
+        $profile = $user->profile ?? new Profile(['user_id' => $user->id]);
+
+        $profile->username = $request->username;
+        $profile->birthday = $request->birthday;
+        $profile->about_me = $request->about_me;
+
+        if ($request->hasFile('profile_picture')) {
+            if ($profile->profile_picture) {
+                Storage::delete('public/' . $profile->profile_picture);
+            }
+            $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+            $profile->profile_picture = $path;
         }
 
-        $request->user()->save();
+        $profile->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return redirect()->route('profile.edit')->with('success', 'Profiel bijgewerkt!');
     }
 
     /**
