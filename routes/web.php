@@ -22,6 +22,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::post('/admin/user/{id}/make-admin', [AdminController::class, 'makeAdmin'])->name('admin.makeAdmin');
     Route::post('/admin/user/{id}/remove-admin', [AdminController::class, 'removeAdmin'])->name('admin.removeAdmin');
+    Route::get('/admin/users/create', [AdminController::class, 'createUser'])->name('admin.createUser');
+    Route::post('/admin/users', [AdminController::class, 'storeUser'])->name('admin.storeUser');
 });
 
 require __DIR__.'/auth.php';
