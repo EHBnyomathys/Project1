@@ -21,10 +21,16 @@
                     <x-nav-link :href="route('news.index')" :active="request()->routeIs('news.index')">
                         {{ __('Nieuws') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('faq.index')" :active="request()->routeIs('faq.index')">
+                        {{ __('FAQ') }}
+                    </x-nav-link>
                     @auth
                         @if (auth()->user()->isAdmin())
+                            <x-nav-link :href="route('faq.create')" :active="request()->routeIs('faq.create')">
+                                {{ __('FAQ Bijwerken') }}
+                            </x-nav-link>
                             <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
-                                {{ __('Admin Dashboard') }}
+                                {{ __('User Machten Beheren') }}
                             </x-nav-link>
                         @endif
                     @endauth

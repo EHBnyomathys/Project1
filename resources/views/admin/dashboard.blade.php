@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Welkom op het Admin Dashboard</h1>
+        <h1>User machten beheren</h1>
         <p>Alleen admins kunnen deze pagina zien.</p>
 
         <h2>Gebruikerslijst</h2>

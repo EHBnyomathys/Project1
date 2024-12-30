@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\FAQController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::resource('faq', FAQController::class)->except(['show']);
 });
 
 Route::get('/profile/{username}', [ProfileController::class, 'show'])->name('profile.show');
@@ -31,6 +33,9 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 //public news
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
+
+//public faq
+Route::get('faq', [FAQController::class, 'index'])->name('faq.index');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     // dashboard
