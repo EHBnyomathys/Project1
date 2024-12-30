@@ -21,6 +21,13 @@
                     <x-nav-link :href="route('news.index')" :active="request()->routeIs('news.index')">
                         {{ __('Nieuws') }}
                     </x-nav-link>
+                    @auth
+                        @if (auth()->user()->isAdmin())
+                            <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                                {{ __('Admin Dashboard') }}
+                            </x-nav-link>
+                        @endif
+                    @endauth
                 </div>
             </div>
 
