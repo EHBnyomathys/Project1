@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NewsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,11 +29,19 @@ Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::middleware(['auth', 'admin'])->group(function () {
+    // dashboard
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::post('/admin/user/{id}/make-admin', [AdminController::class, 'makeAdmin'])->name('admin.makeAdmin');
     Route::post('/admin/user/{id}/remove-admin', [AdminController::class, 'removeAdmin'])->name('admin.removeAdmin');
     Route::get('/admin/users/create', [AdminController::class, 'createUser'])->name('admin.createUser');
     Route::post('/admin/users', [AdminController::class, 'storeUser'])->name('admin.storeUser');
+    // news
+    Route::get('/admin/news', [NewsController::class, 'adminIndex'])->name('admin.news.index');
+    Route::get('/admin/news/create', [NewsController::class, 'create'])->name('admin.news.create');
+    Route::post('/admin/news', [NewsController::class, 'store'])->name('admin.news.store');
+    Route::get('/admin/news/{id}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
+    Route::put('/admin/news/{id}', [NewsController::class, 'update'])->name('admin.news.update');
+    Route::delete('/admin/news/{id}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
 });
 
 require __DIR__.'/auth.php';
