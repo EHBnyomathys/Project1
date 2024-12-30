@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FAQController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,6 +37,10 @@ Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 
 //public faq
 Route::get('faq', [FAQController::class, 'index'])->name('faq.index');
+
+//public contact
+Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     // dashboard

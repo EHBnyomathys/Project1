@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('faq.index')" :active="request()->routeIs('faq.index')">
                         {{ __('FAQ') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('contact.show')" :active="request()->routeIs('contact.show')">
+                        {{ __('Contacteer ons') }}
+                    </x-nav-link>
                     @auth
                         @if (auth()->user()->isAdmin())
                             <x-nav-link :href="route('faq.create')" :active="request()->routeIs('faq.create')">
