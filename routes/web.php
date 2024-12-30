@@ -28,6 +28,10 @@ Route::get('/profile/{username}', [ProfileController::class, 'show'])->name('pro
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+//public news
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
+
 Route::middleware(['auth', 'admin'])->group(function () {
     // dashboard
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

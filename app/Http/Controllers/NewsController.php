@@ -82,4 +82,18 @@ class NewsController extends Controller
 
         return redirect()->route('admin.news.index')->with('success', 'Nieuwsitem verwijderd!');
     }
+
+    // News overview
+    public function index()
+    {
+        $newsItems = News::orderBy('published_at', 'desc')->paginate(10);
+        return view('news.index', compact('newsItems'));
+    }
+
+    // News details page
+    public function show($id)
+    {
+        $newsItem = News::findOrFail($id);
+        return view('news.show', compact('newsItem'));
+    }
 }
