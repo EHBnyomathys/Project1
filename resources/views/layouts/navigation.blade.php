@@ -35,6 +35,9 @@
                             <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                                 {{ __('User Machten Beheren') }}
                             </x-nav-link>
+                            <x-nav-link :href="route('admin.createUser')" :active="request()->routeIs('admin.createUser')">
+                                {{ __('Gebruiker Aanmaken') }}
+                            </x-nav-link>
                         @endif
                     @endauth
                 </div>
