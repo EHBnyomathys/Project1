@@ -18,9 +18,21 @@
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         {{ __('Alle Gebruikers') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('news.index')" :active="request()->routeIs('news.index')">
-                        {{ __('Nieuws') }}
-                    </x-nav-link>
+                    @auth
+                        @if (auth()->user()->role === 'admin')
+                            <x-nav-link :href="route('admin.news.index')" :active="request()->routeIs('admin.news.index')">
+                                {{ __('Nieuws') }}
+                            </x-nav-link>
+                        @else
+                            <x-nav-link :href="route('news.index')" :active="request()->routeIs('news.index')">
+                                {{ __('Nieuws') }}
+                            </x-nav-link>
+                        @endif
+                    @else
+                        <x-nav-link :href="route('news.index')" :active="request()->routeIs('news.index')">
+                            {{ __('Nieuws') }}
+                        </x-nav-link>
+                    @endauth
                     <x-nav-link :href="route('faq.index')" :active="request()->routeIs('faq.index')">
                         {{ __('FAQ') }}
                     </x-nav-link>
