@@ -2,7 +2,11 @@
 
 @section('content')
     <h1>Laatste Nieuws</h1>
-
+    @auth
+    @if (auth()->user()->isAdmin())
+    <a href="{{ route('admin.news.create') }}">Nieuwsbericht Aanmaken ></a>
+    @endif
+    @endauth
     @foreach ($newsItems as $news)
         <div>
             <h2>{{ $news->title }}</h2>

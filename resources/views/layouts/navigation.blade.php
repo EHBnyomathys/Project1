@@ -27,19 +27,6 @@
                     <x-nav-link :href="route('contact.show')" :active="request()->routeIs('contact.show')">
                         {{ __('Contacteer ons') }}
                     </x-nav-link>
-                    @auth
-                        @if (auth()->user()->isAdmin())
-                            <x-nav-link :href="route('faq.create')" :active="request()->routeIs('faq.create')">
-                                {{ __('FAQ Bijwerken') }}
-                            </x-nav-link>
-                            <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
-                                {{ __('User Machten Beheren') }}
-                            </x-nav-link>
-                            <x-nav-link :href="route('admin.createUser')" :active="request()->routeIs('admin.createUser')">
-                                {{ __('Gebruiker Aanmaken') }}
-                            </x-nav-link>
-                        @endif
-                    @endauth
                 </div>
             </div>
 

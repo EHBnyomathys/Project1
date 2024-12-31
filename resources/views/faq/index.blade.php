@@ -9,6 +9,12 @@
         font-weight: bold;
     }
 </style>
+    @auth
+    @if (auth()->user()->isAdmin())                     
+    <a href="{{ route('faq.create') }}">FAQ aanmaken ></a>    
+    @endif
+    @endauth
+
 <div class="container mt-4">
     <h1 class="mb-4 text-center">Veelgestelde Vragen (FAQ)</h1>
     
