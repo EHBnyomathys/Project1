@@ -57,15 +57,58 @@
             color: #999;
             margin-top: 2em;
         }
+
+        /* Admin Sectie */
+        .admin-section {
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            margin: 2em auto;
+            padding: 1.5em;
+            text-align: center;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-section h2 {
+            margin-bottom: 1em;
+            color: var(--primary-color);
+        }
+
+        .admin-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1em;
+            margin-top: 1em;
+        }
+
+        .admin-buttons a {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            border-radius: var(--border-radius);
+            transition: background-color 0.2s;
+        }
+
+        .admin-buttons a:hover {
+            background-color: #357ABD;
+        }
     </style>
 
     <h1 style="text-align: center; margin: 1em 0;">👥 Gebruikersoverzicht</h1>
+
     @auth
     @if (auth()->user()->isAdmin())
-    <a href="{{ route('admin.dashboard') }}">Gebruikersbeheer ></a>
-    <a href="{{ route('admin.createUser') }}">Gebruiker Aanmaken ></a>
+        <div class="admin-section">
+            <h2>🛠️ Beheerdersopties</h2>
+            <div class="admin-buttons">
+                <a href="{{ route('admin.dashboard') }}">📊 Gebruikersbeheer</a>
+                <a href="{{ route('admin.createUser') }}">➕ Gebruiker Aanmaken</a>
+            </div>
+        </div>
     @endif
     @endauth
+
     <ul class="user-list">
         @foreach($users as $user)
             @if($user->profile)
