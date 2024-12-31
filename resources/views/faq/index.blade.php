@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .container {
+        padding-left: 1em;
+    }
+    .mb-0 {
+        font-weight: bold;
+    }
+</style>
 <div class="container mt-4">
     <h1 class="mb-4 text-center">Veelgestelde Vragen (FAQ)</h1>
     
