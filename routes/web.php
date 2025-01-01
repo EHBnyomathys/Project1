@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Admin\ContactMessageController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,6 +57,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/news/{id}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
     Route::put('/admin/news/{id}', [NewsController::class, 'update'])->name('admin.news.update');
     Route::delete('/admin/news/{id}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+
+    // contact messages
+    // Route::resource('contact_messages', ContactMessageController::class)->only(['index', 'show', 'update', 'destroy']);
+});
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('contact_messages', ContactMessageController::class)->only([
+        'index', 'show', 'update', 'destroy'
+    ]);
 });
 
 require __DIR__.'/auth.php';

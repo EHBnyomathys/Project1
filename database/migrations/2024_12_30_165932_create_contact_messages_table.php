@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('subject');
             $table->text('message');
+            $table->boolean('is_replied')->default(false);
+            $table->text('admin_reply')->nullable();
             $table->timestamps();
         });
     }

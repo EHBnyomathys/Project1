@@ -77,6 +77,12 @@
         }
     </style>
 
+    @auth
+        @if (auth()->user()->isAdmin())
+            <a href="{{ route('admin.contact_messages.index') }}">Contactberichten</a>
+        @endif
+    @endauth
+
     <div class="contact-container">
         <h1>📬 Contacteer Ons</h1>
 
