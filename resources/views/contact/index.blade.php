@@ -28,6 +28,10 @@
         .alert-success {
             text-align: center;
             margin-bottom: 1em;
+            padding: 0.75em;
+            background-color: #D4EDDA;
+            color: #155724;
+            border-radius: var(--border-radius);
         }
 
         .form-group {
@@ -57,6 +61,7 @@
 
         .form-control textarea {
             resize: vertical;
+            min-height: 150px;
         }
 
         .btn-primary {
@@ -75,11 +80,28 @@
         .btn-primary:hover {
             background-color: #357ABD;
         }
+
+        .admin-link {
+            text-align: center;
+            margin-bottom: 1.5em;
+        }
+
+        .admin-link a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .admin-link a:hover {
+            text-decoration: underline;
+        }
     </style>
 
     @auth
         @if (auth()->user()->isAdmin())
-            <a href="{{ route('admin.contact_messages.index') }}">Contactberichten</a>
+            <div class="admin-link">
+                <a href="{{ route('admin.contact_messages.index') }}">⚙️ Beheer Contactberichten</a>
+            </div>
         @endif
     @endauth
 
