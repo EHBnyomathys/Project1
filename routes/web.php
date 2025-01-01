@@ -9,6 +9,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\ContactMessageController;
+use App\Http\Controllers\CommentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::resource('faq', FAQController::class)->except(['show']);
+    Route::post('/news/{news}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
 
 Route::get('/profile/{username}', [ProfileController::class, 'show'])->name('profile.show');
