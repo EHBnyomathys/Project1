@@ -10,6 +10,7 @@ use App\Http\Controllers\FAQController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\MessageController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -69,6 +70,15 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('contact_messages', ContactMessageController::class)->only([
         'index', 'show', 'update', 'destroy'
     ]);
+});
+
+Route::middleware(['auth'])->prefix('messages')->name('messages.')->group(function () {
+    Route::get('inbox', [MessageController::class, 'inbox'])->name('inbox');
+    Route::get('sent', [MessageController::class, 'sent'])->name('sent');
+    Route::get('create', [MessageController::class, 'create'])->name('create');
+    Route::post('store', [MessageController::class, 'store'])->name('store');
+    Route::get('{id}', [MessageController::class, 'show'])->name('show');
+    Route::delete('{id}', [MessageController::class, 'destroy'])->name('destroy');
 });
 
 require __DIR__.'/auth.php';

@@ -39,6 +39,11 @@
                     <x-nav-link :href="route('contact.show')" :active="request()->routeIs('contact.show')">
                         {{ __('Contacteer ons') }}
                     </x-nav-link>
+                    @auth
+                    <x-nav-link :href="route('messages.inbox')" :active="request()->routeIs('messages.inbox')">
+                            {{ __('Berichten') }}
+                    </x-nav-link>
+                    @endauth
                 </div>
             </div>
 
