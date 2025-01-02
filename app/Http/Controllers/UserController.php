@@ -32,9 +32,18 @@ class UserController extends Controller
         }
         return redirect()->back()->with('success', 'Adminrechten zijn verwijderd');
     }
-    public function index()
+    
+    public function index(Request $request)
     {
-        $users = User::with('profile')->get();
+        $query = User::query();
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('name', 'LIKE', "%{$search}%");
+        }
+
+        $users = $query->with('profile')->get();
+
         return view('users.index', compact('users'));
-    }
+    }   
 }

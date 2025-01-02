@@ -94,7 +94,12 @@
             background-color: #357ABD;
         }
     </style>
-
+    <div class="search-bar">
+    <form action="{{ route('users.index') }}" method="GET">
+        <input type="text" name="search" placeholder="Zoek op naam of gebruikersnaam" value="{{ request()->get('search') }}">
+        <button type="submit">Zoek</button>
+    </form>
+</div>
     <h1 style="text-align: center; margin: 1em 0;">👥 Gebruikersoverzicht</h1>
 
     @auth
