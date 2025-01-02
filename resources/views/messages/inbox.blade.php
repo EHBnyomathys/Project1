@@ -88,7 +88,7 @@
         @foreach($messages as $message)
             <div class="message-item">
                 <p><strong>👤 Van:</strong> {{ $message->sender->username ?? $message->sender->name ?? 'Onbekende gebruiker' }}</p>
-                <p><strong>💬 Bericht:</strong> {{ Str::limit($message->content, 50) }}</p>
+                <p><strong>💬 Bericht:</strong> {{ Str::limit($message->content, 200) }}</p>
             </div>
             <hr>
         @endforeach
