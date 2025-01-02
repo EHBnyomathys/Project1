@@ -94,7 +94,7 @@ Extra accounts kunnen altijd worden aangemaakt.
 
 - https://canvas.ehb.be/courses/40595
 - https://laravel.com/docs/11.x/starter-kits
-- ChatGPT gebruikt om pagina's snel en efficiënt te stijlen: https://chatgpt.com/share/67740b02-b66c-8006-bf8c-d0ff4449a5ae
+- ChatGPT gebruikt om pagina's snel en efficiënt te stijlen (Ik dat de chat wat anders is als bij mij. Bij mij gaf chatGPT steeds een mooiere versie terug die ik dan steeds kopiëerde en plakte): https://chatgpt.com/share/67740b02-b66c-8006-bf8c-d0ff4449a5ae
 
 ## Auteur
 
