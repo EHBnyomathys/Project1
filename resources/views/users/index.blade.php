@@ -10,6 +10,38 @@
             --border-radius: 8px;
         }
 
+        .search-bar {
+            text-align: center;
+            margin: 2em 0;
+        }
+
+        .search-bar form {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+
+        .search-bar input {
+            padding: 0.5em;
+            border: 1px solid #ccc;
+            border-radius: var(--border-radius);
+            width: 300px;
+        }
+
+        .search-bar button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5em 1em;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .search-bar button:hover {
+            background-color: #357ABD;
+        }
+
         .user-list {
             display: flex;
             flex-wrap: wrap;
@@ -94,12 +126,14 @@
             background-color: #357ABD;
         }
     </style>
+
     <div class="search-bar">
-    <form action="{{ route('users.index') }}" method="GET">
-        <input type="text" name="search" placeholder="Zoek op naam of gebruikersnaam" value="{{ request()->get('search') }}">
-        <button type="submit">Zoek</button>
-    </form>
-</div>
+        <form action="{{ route('users.index') }}" method="GET">
+            <input type="text" name="search" placeholder="🔍 Zoek op naam of gebruikersnaam" value="{{ request()->get('search') }}">
+            <button type="submit">🔎 Zoek</button>
+        </form>
+    </div>
+
     <h1 style="text-align: center; margin: 1em 0;">👥 Gebruikersoverzicht</h1>
 
     @auth
